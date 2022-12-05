@@ -1,4 +1,5 @@
 using ECommerce.Data;
+using ECommerce.Data.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +31,7 @@ namespace ECommerce
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });  
             services.AddControllersWithViews();
+            services.AddScoped<ICategoryServices, CategoryServices>();
         }
 
         private void options(DbContextOptionsBuilder obj)
