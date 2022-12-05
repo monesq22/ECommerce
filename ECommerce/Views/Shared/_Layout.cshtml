@@ -26,8 +26,8 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">Products</a>
                         </li>
                     </ul>
-                    <form class="form-inline" style="padding-right=30px;">
-                        <input type="text" class="form-control" placeholder="Search Here ..." />
+                    <form class="form-inline" style="padding-right=30px; " asp-action="Index" asp-controller="Products">
+                        <input name="searchTerm" type="text" class="form-control" placeholder="Search Here ..." autocomplete="off"/>
                         <button type="submit" class="btn btn-outline-success">
                             <i class="fas fa-regular fa-search"></i>
                         </button>

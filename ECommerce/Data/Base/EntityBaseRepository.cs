@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace ECommerce.Data.Base
@@ -19,7 +21,7 @@ namespace ECommerce.Data.Base
         public async Task CreateAsync(T entity)
         {
             await _Entites.AddAsync(entity);    
-            await SaveChangesAsync();
+            await SaveChanges();
         }
 
         public async Task DeleteAsync(int id)
@@ -28,17 +30,33 @@ namespace ECommerce.Data.Base
             if (entityId != null)
             {
                 _Entites.Remove(entityId);
-                await SaveChangesAsync();
+                await SaveChanges();
             }
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public async Task<IEnumerable<T>> GetAllAsync(int id)
         => await _Entites.ToListAsync();
 
-        public async Task<T> GetByIdAsyc(int id)
+        public async Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T, object>>[] include)
+        {
+            IQueryable<T> query = _Entites.AsQueryable();
+            query = include.Aggregate(query, (current, include) => current.Include(include));
+            return await query.ToListAsync(); 
+        }
+
+        
+
+        public async Task<T> GetByIdAsync(int id)
         => await _Entites.FirstOrDefaultAsync(x=> x.Id == id);
 
-        public async Task SaveChangesAsync()
+        public async Task<T> GetByIdAsync(int id, params Expression<Func<T, object>>[] include)
+        {
+            IQueryable<T> query = _Entites.AsQueryable();
+            query = include.Aggregate(query, (current, include) => current.Include(include));
+            return await query.FirstOrDefaultAsync(x=>x.Id==id);
+        }
+
+        public async Task SaveChanges()
         {
             await _context.SaveChangesAsync();
         }
@@ -50,9 +68,6 @@ namespace ECommerce.Data.Base
             await SaveChanges();
         }
 
-        private async Task SaveChanges()
-        {
-            await _context.SaveChangesAsync();
-        }
+        
     }
 }

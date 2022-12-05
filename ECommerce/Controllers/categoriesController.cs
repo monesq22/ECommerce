@@ -38,7 +38,7 @@ namespace ECommerce.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            var Category = await _services.GetByIdAsyc(id);
+            var Category = await _services.GetByIdAsync(id);
             if (Category!=null)
             {
                 return View(Category);
@@ -47,7 +47,7 @@ namespace ECommerce.Controllers
         }
         public async Task<IActionResult> Edit(int id)
         {
-            var Category = await _services.GetByIdAsyc(id);
+            var Category = await _services.GetByIdAsync(id);
             if (Category != null)
             {
                 return View(Category);

@@ -32,6 +32,7 @@ namespace ECommerce
             });  
             services.AddControllersWithViews();
             services.AddScoped<ICategoryServices, CategoryServices>();
+            services.AddScoped<IProductServices, ProductServices>();
         }
 
         private void options(DbContextOptionsBuilder obj)
