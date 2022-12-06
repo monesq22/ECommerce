@@ -49,7 +49,7 @@ namespace ECommerce.Data
                             Price=150,
                             ImageURL="https://www.tagheuer.com/on/demandware.static/-/Sites-tagheuer-master/default/dw2c45e549/TAG_Heuer_Carrera/CBG2A11.BA0654/CBG2A11.BA0654_0913.png?impolicy=resize&width=1920",
                             ProductColor=ProductColor.Red,
-                            CategoryId=5
+                            CategoryId=1
                         },
                         new Product()
                         {
@@ -58,7 +58,7 @@ namespace ECommerce.Data
                             Price=200,
                             ImageURL="https://www.tagheuer.com/on/demandware.static/-/Sites-tagheuer-master/default/dwd3773f69/TAG_Heuer_Carrera/CBN2A1F.FC6492/CBN2A1F.FC6492_0913.png?impolicy=resize&width=1920",
                             ProductColor=ProductColor.Green,
-                            CategoryId=6
+                            CategoryId=2
                         },
                         new Product()
                         {
@@ -67,7 +67,7 @@ namespace ECommerce.Data
                             Price=300,
                             ImageURL="https://cdn.shopify.com/s/files/1/0139/3573/8934/products/UTBJ11_Front_6_700x.png?v=1652785822",
                             ProductColor=ProductColor.Yellow,
-                            CategoryId=7
+                            CategoryId=3
                         },
                         new Product()
                         {
@@ -76,7 +76,7 @@ namespace ECommerce.Data
                             Price=400,
                             ImageURL="https://s.yimg.com/aah/movadobaby/breitling-navitimer-rattrapante-limited-edition-men-s-watch-rb0311211q1p2-27.jpg",
                             ProductColor=ProductColor.Blue,
-                            CategoryId=7
+                            CategoryId=3
                         }
                     };
                     context.Products.AddRange(Prodcuts);
