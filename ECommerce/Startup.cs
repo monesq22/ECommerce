@@ -1,10 +1,13 @@
 using ECommerce.Data;
 using ECommerce.Data.Cart;
 using ECommerce.Data.Services;
+using ECommerce.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,6 +42,13 @@ namespace ECommerce
             services.AddScoped(x=> ShoppingCart.GetShoppingCart(x));
             services.AddSession();
             services.AddScoped<IOrderServices, OrderServices>();
+            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ECommerceDbContext>();
+            services.AddMemoryCache();
+            services.AddAuthentication(optinos =>
+            {
+                optinos.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            });
+            services.AddAuthorization();
         }
 
         private void options(DbContextOptionsBuilder obj)
@@ -64,6 +74,7 @@ namespace ECommerce
 
             app.UseRouting();
             app.UseSession();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -73,6 +84,7 @@ namespace ECommerce
                     pattern: "{controller=Products}/{action=Index}/{id?}");
             });
             AppDbInitializer.Seed(app);
+            AppDbInitializer.SeedUsersAndRolesAsync(app).Wait();
         }
     }
 }

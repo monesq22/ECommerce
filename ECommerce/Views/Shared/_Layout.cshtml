@@ -18,14 +18,20 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Categories" asp-action="Index">Category</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">Products</a>
-                        </li>
-                    </ul>
+                    
+                    
+                        <ul class="navbar-nav flex-grow-1">
+                        @if (Context.User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Categories" asp-action="Index">Category</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">Products</a>
+                            </li>
+                        }
+                        </ul>
+                    
                     <form class="form-inline" style="padding-right=30px; " asp-action="Index" asp-controller="Products">
                         <input name="searchTerm" type="text" class="form-control" placeholder="Search Here ..." autocomplete="off"/>
                         <button type="submit" class="btn btn-outline-success">
@@ -33,20 +39,12 @@
                         </button>
                     </form>
                     <ul class="navbar-nav">
-                        @await Component.InvokeAsync("ShoppingCartSummary");
+                        @await Component.InvokeAsync("ShoppingCartSummary")
                     </ul>
-                    <div class="dropdown">
-                        <button class="btn btn-outline-success dropdown-toggle" id="profile-btn" data-toggle="dropdown">
-                        <i class="fas fa-person"></i> Hello Mones
-                        </button>
-                        <ul class="dropdown-menu" area-labledby="profile-btn">
-                            <li>
-                                <a class="dropdown-item" asp-controller="Orders" asp-action="Index">
-                                    <i class="fas fa-regular fa-list-check"></i> Orders
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+
+                   @* Partial View*@
+                   <partial name="_Identity" />
+
                 </div>
             </div>
         </nav>

@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Shopping Cart Summary";
 }
+
 <div class="row">
     <div class="col-md-8 offset-2">
         <div class="text-center">
@@ -14,6 +15,7 @@
                     <th>Product</th>
                     <th>Price</th>
                     <th>Subtotal</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -25,10 +27,12 @@
                         <td class="align-middle">@item.Product.Price</td>
                         <td class="align-middle">@((item.Product.Price * item.Amount).ToString("c"))</td>
                         <td>
-                            <a asp-controller="Orders" asp-action="RemoveFromCart" asp-route-id="@item.Product.Id">
+                            <a class="text-danger" asp-controller="Orders" asp-action="RemoveFromCart"
+                           asp-route-id="@item.Product.Id">
                                 <i class="fas fa-regular fa-minus"></i>
                             </a>
-                            <a asp-controller="Orders" asp-action="AddToCart" asp-route-id="@item.Product.Id">
+                            <a class="text-success" asp-controller="Orders" asp-action="AddToCart"
+                           asp-route-id="@item.Product.Id">
                                 <i class="fas fa-regular fa-plus"></i>
                             </a>
                         </td>
@@ -39,22 +43,26 @@
                 <tr>
                     <td class="collapse-2"></td>
                     <td><b>Total:</b></td>
-                    <td>(@ViewBag.Total.ToString("c"))</td>
+                    <td>@(ViewBag.Total.ToString("c"))</td>
                     <td></td>
                 </tr>
             </tfoot>
         </table>
         <div class="text-center">
-            <div class="btn btn-groub">
-                <a class="btn btn-outline-info" asp-controller="Products" asp-action="Index">
-                    <i class="fas fa-regular fa-refresh">Continou Shopping</i>
+            <div class="btn btn-group">
+                <a class="btn btn-outline-info mr-3" asp-controller="Products" asp-action="Index">
+                    <i class="fas fa-regular fa-refresh mr-2"></i>
+                    Continou Shopping
                 </a>
-                <div id="payapl-button"></div>
-               @* <a class="btn btn-outline-success" asp-controller="Orders" asp-action="CompleteOrder">
-                    <i class="fas fa-regular fa-check"></i>
-                    Complete Order
+                @if (User.Identity.IsAuthenticated && Model.Count() > 0)
+                {
+                    <b>|</b>
+                    <div id="payapl-button"></div>
+                    @*<a class="btn btn-outline-success" asp-controller="Orders" asp-action="CompleteOrder">
+                <i class="fas fa-regular fa-check mr-2"></i>
+                Complete Order
                 </a>*@
-
+                }
             </div>
         </div>
     </div>
