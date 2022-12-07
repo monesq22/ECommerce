@@ -24,8 +24,8 @@ namespace ECommerce.Data
                     {
                         new Category()
                         {
-                            Name= "C1",
-                            Description="C1"
+                            Name= "SWATCH",
+                            Description="Swatch Group is a diversified multinational holding company"
                         },
                         new Category()
                         {
@@ -47,11 +47,11 @@ namespace ECommerce.Data
                     {
                         new Product()
                         {
-                            Name= "P1",
-                            Description="D1",
+                            Name= "SWATCH ",
+                            Description="SWATCH BLUE BOAT SILVER ST. STEEL DARK BLUE DIAL FOR MEN",
                             Price=150,
-                            ImageURL="https://www.tagheuer.com/on/demandware.static/-/Sites-tagheuer-master/default/dw2c45e549/TAG_Heuer_Carrera/CBG2A11.BA0654/CBG2A11.BA0654_0913.png?impolicy=resize&width=1920",
-                            ProductColor=ProductColor.Red,
+                            ImageURL="https://waqtee.com/media/catalog/product/y/w/yws420gc.jpg",
+                            ProductColor=ProductColor.SILVER,
                             CategoryId=1
                         },
                         new Product()

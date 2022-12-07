@@ -32,11 +32,11 @@
                         }
                         </ul>
                     
-                    <form class="form-inline" style="padding-right=30px; " asp-action="Index" asp-controller="Products">
-                        <input name="searchTerm" type="text" class="form-control" placeholder="Search Here ..." autocomplete="off"/>
-                        <button type="submit" class="btn btn-outline-success">
+                    <form class="form-inline" style="margin-right:20px " asp-action="Index" asp-controller="Products">
+                        <button type="submit" class="btn btn-outline-success" style="margin-right:5px">
                             <i class="fas fa-regular fa-search"></i>
                         </button>
+                        <input name="searchTerm" type="text" class="form-control" placeholder="Search Here ..." autocomplete="off"/>
                     </form>
                     <ul class="navbar-nav">
                         @await Component.InvokeAsync("ShoppingCartSummary")
@@ -57,7 +57,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - ECommerce - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2022 - ECommerce  - <a asp-area="" asp-controller="Products" asp-action="">ECommerce </a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
