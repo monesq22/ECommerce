@@ -1,7 +1,9 @@
 using ECommerce.Data;
+using ECommerce.Data.Cart;
 using ECommerce.Data.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -33,6 +35,10 @@ namespace ECommerce
             services.AddControllersWithViews();
             services.AddScoped<ICategoryServices, CategoryServices>();
             services.AddScoped<IProductServices, ProductServices>();
+            services.AddSingleton<IHttpContextAccessor , HttpContextAccessor>();    
+            services.AddScoped(x=> ShoppingCart.GetShoppingCart(x));
+            services.AddSession();
+            services.AddScoped<IOrderServices, OrderServices>();
         }
 
         private void options(DbContextOptionsBuilder obj)
@@ -57,7 +63,7 @@ namespace ECommerce
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseSession();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
