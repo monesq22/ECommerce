@@ -14,7 +14,7 @@ namespace ECommerce.Data
     {
         public static void Seed(IApplicationBuilder builder)
         {
-            using(var applicationservies = builder.ApplicationServices.CreateScope())
+            using (var applicationservies = builder.ApplicationServices.CreateScope())
             {
                 var context = applicationservies.ServiceProvider.GetService<ECommerceDbContext>();
                 context.Database.EnsureCreated();
@@ -24,19 +24,10 @@ namespace ECommerce.Data
                     {
                         new Category()
                         {
-                            Name= "SWATCH",
-                            Description="Swatch Group is a diversified multinational holding company"
-                        },
-                        new Category()
-                        {
-                            Name= "C2",
-                            Description="C2"
-                        },
-                        new Category()
-                        {
-                            Name= "C3",
-                            Description="C3"
+                            Name= "OMEGA",
+                            Description="C1"
                         }
+                        
                     };
                     context.Categories.AddRange(categories);
                     context.SaveChanges();
@@ -47,39 +38,39 @@ namespace ECommerce.Data
                     {
                         new Product()
                         {
-                            Name= "SWATCH ",
-                            Description="SWATCH BLUE BOAT SILVER ST. STEEL DARK BLUE DIAL FOR MEN",
-                            Price=150,
-                            ImageURL="https://waqtee.com/media/catalog/product/y/w/yws420gc.jpg",
+                            Name= "AQUA TERRA ",
+                            Description="AQUA TERRA 150M\r\nCO‑AXIAL MASTER CHRONOMETER 41 MM",
+                            Price=300,
+                            ImageURL="https://www.omegawatches.com/media/catalog/product/cache/a5c37fddc1a529a1a44fea55d527b9a116f3738da3a2cc38006fcc613c37c391/o/m/omega-seamaster-aqua-terra-150m-22012412102001-l.png",
                             ProductColor=ProductColor.SILVER,
                             CategoryId=1
                         },
                         new Product()
                         {
-                            Name= "P2",
-                            Description="D2",
-                            Price=200,
-                            ImageURL="https://www.tagheuer.com/on/demandware.static/-/Sites-tagheuer-master/default/dwd3773f69/TAG_Heuer_Carrera/CBN2A1F.FC6492/CBN2A1F.FC6492_0913.png?impolicy=resize&width=1920",
+                            Name= "DIVER",
+                            Description="DIVER 300M\r\nCO‑AXIAL MASTER CHRONOMETER 42 MM",
+                            Price=500,
+                            ImageURL="https://www.omegawatches.com/media/catalog/product/cache/a5c37fddc1a529a1a44fea55d527b9a116f3738da3a2cc38006fcc613c37c391/o/m/omega-seamaster-diver-300m-21032422001001-l.png",
                             ProductColor=ProductColor.Green,
-                            CategoryId=2
+                            CategoryId=1
                         },
                         new Product()
                         {
-                            Name= "P3",
-                            Description="D3",
+                            Name= "PLANET",
+                            Description="PLANET OCEAN 6000M\r\nCO‑AXIAL MASTER CHRONOMETER 45.5 MM",
                             Price=300,
-                            ImageURL="https://cdn.shopify.com/s/files/1/0139/3573/8934/products/UTBJ11_Front_6_700x.png?v=1652785822",
+                            ImageURL="https://www.omegawatches.com/media/catalog/product/cache/a5c37fddc1a529a1a44fea55d527b9a116f3738da3a2cc38006fcc613c37c391/o/m/omega-seamaster-planet-ocean-6000m-co-axial-master-chronometer-45-5-mm-21530462104001-l.png",
                             ProductColor=ProductColor.Yellow,
-                            CategoryId=3
+                            CategoryId=1
                         },
                         new Product()
                         {
-                            Name= "P4",
-                            Description="D4",
+                            Name= "SEAMASTER",
+                            Description="SEAMASTER 300\r\nCO‑AXIAL MASTER CHRONOMETER 41 MM",
                             Price=400,
-                            ImageURL="https://s.yimg.com/aah/movadobaby/breitling-navitimer-rattrapante-limited-edition-men-s-watch-rb0311211q1p2-27.jpg",
+                            ImageURL="https://www.omegawatches.com/media/catalog/product/cache/a5c37fddc1a529a1a44fea55d527b9a116f3738da3a2cc38006fcc613c37c391/o/m/omega-seamaster-seamaster-300-co-axial-master-chronometer-41-mm-23430412101001-l.png",
                             ProductColor=ProductColor.Blue,
-                            CategoryId=3
+                            CategoryId=1
                         }
                     };
                     context.Products.AddRange(Prodcuts);
@@ -87,7 +78,7 @@ namespace ECommerce.Data
                 }
 
             }
-            ///
+            
 
         }
         public static async Task SeedUsersAndRolesAsync(IApplicationBuilder builder)
