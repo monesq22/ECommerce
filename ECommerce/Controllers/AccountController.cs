@@ -11,6 +11,10 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Controllers
 {
+    /*
+     ADMIN EMAIL: admin@admin.com
+     PASSWORD: @Dmin123
+     */
     public class AccountController : Controller
     {
         private readonly ECommerceDbContext _context;
